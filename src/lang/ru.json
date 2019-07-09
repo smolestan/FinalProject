@@ -1,0 +1,27 @@
+{
+    "common": {
+        "back": "Назад"
+    },
+    "tabs": {
+        "home": "Главная",
+        "search": "Поиск",
+        "feed": "Лента",
+        "profile": "Профиль"
+    },
+    "main": {
+        "headerTitle": "Главная",
+        "text": "Погнали!"
+    }, 
+    "settings": {
+        "headerTitle": "Настройки"
+    },
+    "profile": {
+        "headerTitle": "Профиль"
+    },
+    "search": {
+        "headerTitle": "Поиск"
+    },
+    "feed": {
+        "headerTitle": "Лента"
+    }
+}

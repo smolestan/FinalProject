@@ -1,12 +1,12 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 
-export default class HomeScreen extends React.Component {
+export default class SettingsScreen extends React.Component {
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Home</Text>
+        <Text style={styles.text}>Settings</Text>
       </View>
     );
   }
@@ -14,8 +14,9 @@ export default class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     justifyContent: "center",
-    flex: 1
+
   },
   text: {
     textAlign: "center"

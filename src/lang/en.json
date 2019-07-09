@@ -1,0 +1,27 @@
+{
+    "common": {
+        "back": "Back"
+    },
+    "tabs": {
+        "home": "Home",
+        "search": "Search",
+        "feed": "Feed",
+        "profile": "Profile"
+    },
+    "main": {
+        "headerTitle": "Main",
+        "text": "Let's go!"
+    }, 
+    "settings": {
+        "headerTitle": "Settings"
+    },
+    "profile": {
+        "headerTitle": "Profile"
+    },
+    "search": {
+        "headerTitle": "Search"
+    },
+    "feed": {
+        "headerTitle": "Feed"
+    }
+}
