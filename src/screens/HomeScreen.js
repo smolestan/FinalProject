@@ -1,9 +1,20 @@
 import React from "react";
 import { View, StyleSheet, Text, Button, ImageBackground } from "react-native";
 import { t } from '../services/i18n'
+import { connect } from 'react-redux'
+import { updateHighScores } from '../actions'
 
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
+  state = {
+    totalWords: 0,
+    highScores: []
+  }
+
+  handlePress = () => {
+    this.setState({ totalWords: "10" })
+    this.props.updateHighScores([{ score: 10, createdAt: new Date() }])
+  }
 
   render() {
     return (
@@ -15,6 +26,10 @@ export default class HomeScreen extends React.Component {
               blurRadius={10}
             >
               <Text style={styles.text}>{t('main:text')}</Text>
+              <Button 
+                title="Increase highscore"
+                onPress={this.handlePress}>
+              </Button>
             </ImageBackground>
           
       </View>
@@ -35,3 +50,11 @@ const styles = StyleSheet.create({
     padding: 20
   }
 });
+
+const mapStateToProps = (state) => ({
+  highScores: state.highScores
+})
+
+const mapDispachToProps = ({ updateHighScores })
+
+export default connect(mapStateToProps, mapDispachToProps)(HomeScreen)
