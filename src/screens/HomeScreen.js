@@ -1,5 +1,5 @@
-import React from "react";
-import { View, StyleSheet, Text, Button, ImageBackground } from "react-native";
+import React from "react"
+import { View, StyleSheet, Text, Button, ImageBackground } from "react-native"
 import { t } from '../services/i18n'
 import { connect } from 'react-redux'
 import { updateHighScores } from '../actions'
@@ -33,7 +33,7 @@ class HomeScreen extends React.Component {
             </ImageBackground>
           
       </View>
-    );
+    )
   }
 }
 
@@ -49,12 +49,12 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     padding: 20
   }
-});
+})
 
 const mapStateToProps = (state) => ({
   highScores: state.highScores
 })
 
-const mapDispachToProps = ({ updateHighScores })
+const mapDispatchToProps = ({ updateHighScores })
 
-export default connect(mapStateToProps, mapDispachToProps)(HomeScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

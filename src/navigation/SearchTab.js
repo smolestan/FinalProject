@@ -3,11 +3,13 @@ import { Text } from 'react-native'
 import { createStackNavigator } from 'react-navigation'
 import { Ionicons } from 'react-native-vector-icons'
 import SearchScreen from '../screens/SearchScreen'
+import ExerciseScreen from '../screens/ExerciseScreen'
 import { t } from '../services/i18n'
 
 const SearchTab = createStackNavigator(
   {
     Search: SearchScreen,
+    Exercise: ExerciseScreen
   },
   {
     initialRouteName: "Search"

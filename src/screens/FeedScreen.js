@@ -1,8 +1,8 @@
-import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import React from "react"
+import { View, StyleSheet, Text } from "react-native"
 import { connect } from 'react-redux'
 
-import HighScores from '../components/HighScores';
+import HighScores from '../components/HighScores'
 
 class FeedScreen extends React.Component {
 
@@ -11,7 +11,7 @@ class FeedScreen extends React.Component {
       <View style={styles.container}>
         <HighScores data={this.props.highScores} totalNumber={25} />
       </View>
-    );
+    )
   }
 }
 
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center"
   }
-});
+})
 
 
 const mapStateToProps = ({ highScores }) => ({

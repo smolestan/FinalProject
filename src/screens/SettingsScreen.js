@@ -1,5 +1,5 @@
-import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import React from "react"
+import { View, StyleSheet, Text } from "react-native"
 
 export default class SettingsScreen extends React.Component {
 
@@ -8,7 +8,7 @@ export default class SettingsScreen extends React.Component {
       <View style={styles.container}>
         <Text style={styles.text}>Settings</Text>
       </View>
-    );
+    )
   }
 }
 
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center"
   }
-});
+})

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "expo": "^33.0.0",
+    "expo-av": "^5.0.2",
     "expo-localization": "^5.0.1",
     "i18next": "^17.0.6",
     "moment": "^2.24.0",

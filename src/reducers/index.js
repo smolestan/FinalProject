@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux'
-import HihgScoresReducer from './HighScoresReducer'
+import HighScoresReducer from './HighScoresReducer'
+import UserReducer from './UserReducer'
+import ExercisesReducer from './ExercisesReducer'
 
 export default combineReducers({
-    highScores: HihgScoresReducer
+    highScores: HighScoresReducer,
+    user: UserReducer,
+    exercises: ExercisesReducer
 })

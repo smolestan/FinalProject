@@ -1,14 +1,30 @@
-import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import React from "react"
+import { View, StyleSheet, Text, FlatList } from "react-native"
+import { connect } from 'react-redux'
 
-export default class SearchScreen extends React.Component {
+import Row from '../components/Row'
+
+class SearchScreen extends React.Component {
+
+  onPress = (title, video) => {
+    this.props.navigation.navigate('Exercise', { 
+      title: title, 
+      video: video })
+  }
+
+  renderItem = ({item}) => <Row {...item} onPress={this.onPress} />
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Search</Text>
+      <View>
+        <Text style={styles.text}>Exercises</Text>
+        <FlatList
+          data={this.props.exercises}
+          keyExtractor={(item, index) => item.id.toString()}
+          renderItem={this.renderItem}
+        />
       </View>
-    );
+    )
   }
 }
 
@@ -20,4 +36,10 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center"
   }
-});
+})
+
+const mapStateToProps = ({ exercises }) => ({
+  exercises
+})
+
+export default connect(mapStateToProps, {})(SearchScreen)
