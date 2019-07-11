@@ -15,7 +15,7 @@ class SplashScreen extends React.Component {
         })
         .then(() => this.state.isI18nInitialized && this.props.navigation.navigate('Main'))
         .catch((error) => console.warn(error))
-    fetch("https://mobasketball.herokuapp.com/api/training/")
+    fetch("https://mobasketball.herokuapp.com/api/exercises/")
         .then(response => response.json())
         .then(data => console.log(data))
     
