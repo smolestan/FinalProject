@@ -1,6 +1,8 @@
+import * as actionTypes from './actionTypes'
+
 export const updateHighScores = (highScores) => {
     return {
-        type: 'HIGHSCORES_UPDATED',
+        type: actionTypes.HIGHSCORES_UPDATED,
         payload: highScores
     }
 }

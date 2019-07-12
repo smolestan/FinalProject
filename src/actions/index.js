@@ -1,3 +1,3 @@
 export * from './HighScoresActions'
-export * from './UserActions'
+export * from './AuthActions'
 export * from './ExercisesActions'

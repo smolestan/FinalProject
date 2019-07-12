@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import HighScoresReducer from './HighScoresReducer'
-import UserReducer from './UserReducer'
+import AuthReducer from './AuthReducer'
 import ExercisesReducer from './ExercisesReducer'
 
 export default combineReducers({
     highScores: HighScoresReducer,
-    user: UserReducer,
+    auth: AuthReducer,
     exercises: ExercisesReducer
 })

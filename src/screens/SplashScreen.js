@@ -1,28 +1,58 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import i18n from '../services/i18n'
 import { connect } from 'react-redux'
 import { updateExercises } from '../actions'
+import { checkToken } from '../storage/settingsStorage'
 
 class SplashScreen extends React.Component {
 
   state = {
     isI18nInitialized: false,
+    isExercisesLoaded: false,
+    isUserLoggedIn: false,
+    isCheckResultFalse: false
   }
 
   componentDidMount() {
+    checkToken()
+        .then((token) => {
+          if (token == false) {
+            this.setState({ isCheckResultFalse: true }) 
+          } else {
+            this.setState({ isUserLoggedIn: true })
+          }
+        })
+        .catch(err => console.warn('Promise rejected with error: ' + err))
+
     i18n.init()
         .then(() => {
           this.setState({ isI18nInitialized: true })
         })
-        .then(() => this.state.isI18nInitialized && this.props.navigation.navigate('Main'))
         .catch((error) => console.warn(error))
+    
     fetch("https://mobasketball.herokuapp.com/api/exercises/")
         .then(response => response.json())
-        .then(data => this.props.updateExercises(data))
-    
+        .then(data => {
+          this.props.updateExercises(data)
+          this.setState({ isExercisesLoaded: true })
+        })
+        .catch(err => console.warn(err))
   }
 
+  componentDidUpdate() {
+    if (this.state.isCheckResultFalse
+      && this.state.isI18nInitialized 
+      && this.state.isExercisesLoaded) {
+        this.props.navigation.navigate('Login')
+      }
+    if (this.state.isI18nInitialized 
+      && this.state.isExercisesLoaded 
+      && this.state.isUserLoggedIn) {
+        this.props.navigation.navigate('Main')
+      }
+  }
+  
   render() {
     return (
       <View style={styles.viewStyles}>
@@ -39,10 +69,10 @@ const styles = {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'orange'
+    backgroundColor: 'white'
   },
   textStyles: {
-    color: 'white',
+    color: 'orange',
     fontSize: 40,
     fontWeight: 'bold'
   }

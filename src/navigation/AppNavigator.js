@@ -8,6 +8,7 @@ import SearchTab from './SearchTab'
 import FeedTab from './FeedTab'
 import ProfileTab from './ProfileTab'
 import SplashScreen from '../screens/SplashScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 const MainNavigator = createBottomTabNavigator(
   {
@@ -21,6 +22,7 @@ const MainNavigator = createBottomTabNavigator(
 const AppNavigator = createSwitchNavigator(
   {
     Splash: SplashScreen,
+    Login: LoginScreen,
     Main: MainNavigator
   }
 )

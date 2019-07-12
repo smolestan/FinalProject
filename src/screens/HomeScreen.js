@@ -1,5 +1,6 @@
 import React from "react"
-import { View, StyleSheet, Text, Button, ImageBackground } from "react-native"
+import { View, StyleSheet, Text, ImageBackground } from "react-native"
+import Button from "../components/Button"
 import { t } from '../services/i18n'
 import { connect } from 'react-redux'
 import { updateHighScores } from '../actions'
@@ -25,11 +26,13 @@ class HomeScreen extends React.Component {
               resizeMode='cover'
               blurRadius={10}
             >
-              <Text style={styles.text}>{t('main:text')}</Text>
-              <Button 
-                title="Increase highscore"
-                onPress={this.handlePress}>
-              </Button>
+                <Text style={styles.text}>{t('main:text')}</Text>
+                <View style={{padding: 50}}>
+                <Button
+                  label="Increase highscore"
+                  onPress={this.handlePress}>
+                </Button>
+                </View>
             </ImageBackground>
           
       </View>
@@ -39,7 +42,8 @@ class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
+    justifyContent: "space-between",
+    alignContent: "center",
     flex: 1
   },
   text: {
@@ -47,7 +51,8 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 50,
     fontWeight: "800",
-    padding: 20
+    padding: 20,
+    width: '100%'
   }
 })
 

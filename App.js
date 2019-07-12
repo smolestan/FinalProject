@@ -5,16 +5,22 @@ import {
 import AppNavigator from './src/navigation/AppNavigator';
 
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import reducers from './src/reducers'
+import { createStore, compose, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 
-const AppNavigatorContainer = createAppContainer(AppNavigator);
+import reducer from './src/reducers/index'
+
+const AppNavigatorContainer = createAppContainer(AppNavigator)
+
+const store = createStore(reducer, compose(
+  applyMiddleware(thunk)
+))
 
 class App extends React.Component {
 
   render() {
     return (
-      <Provider store={createStore(reducers)}>
+      <Provider store={store}>
         <AppNavigatorContainer />
       </Provider>
     )

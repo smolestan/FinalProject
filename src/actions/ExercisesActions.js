@@ -1,6 +1,8 @@
+import * as actionTypes from './actionTypes'
+
 export const updateExercises = (exercises) => {
     return {
-        type: 'EXERCISES_UPDATED',
+        type: actionTypes.EXERCISES_UPDATED,
         payload: exercises
     }
 }
