@@ -23,7 +23,7 @@ export const authFail = error => {
 }
 
 export const logout = () => {
-    removeStorageItem('token')
+    removeStorageItem('user')
     return {
         type: actionTypes.AUTH_LOGOUT
     }
@@ -38,7 +38,7 @@ export const authLogin = (username, password) => {
         })
         .then(res => {
             const token = res.data.key
-            setStorageItem('token', token)
+            setStorageItem('user', { username, token } )
             dispatch(authSuccess(token))
         })
         .catch(err => {

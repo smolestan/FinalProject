@@ -4,7 +4,7 @@ import { AsyncStorage } from 'react-native'
 export const getStorageItem = async (key) => {
   try {
     const value = await AsyncStorage.getItem(key)
-    if (value !== null) {return value} else {return false}
+    if (value !== null) {return JSON.parse(value)} else {return false}
   } catch (err) {
     console.warn(err.message)
     return false
@@ -23,7 +23,7 @@ export const removeStorageItem = async (key) => {
 
 export const setStorageItem = async (key, val) => {
   try {
-    const value = await AsyncStorage.setItem(key, val)
+    const value = await AsyncStorage.setItem(key, JSON.stringify(val))
     return true
   } catch (err) {
     console.warn(err)

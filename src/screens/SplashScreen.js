@@ -15,9 +15,9 @@ class SplashScreen extends React.Component {
   }
 
   componentDidMount() {
-    getStorageItem('token')
-        .then((token) => {
-          if (token == false) {
+    getStorageItem('user')
+        .then((user) => {
+          if (user == false) {
             this.setState({ isCheckResultFalse: true }) 
           } else {
             this.setState({ isUserLoggedIn: true })
