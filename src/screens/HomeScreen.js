@@ -1,6 +1,6 @@
 import React from "react"
 import { View, StyleSheet, Text, ImageBackground } from "react-native"
-import Button from "../components/Button"
+import CButton from "../components/CButton"
 import { t } from '../services/i18n'
 import { connect } from 'react-redux'
 import { updateHighScores } from '../actions'
@@ -28,10 +28,10 @@ class HomeScreen extends React.Component {
             >
                 <Text style={styles.text}>{t('main:text')}</Text>
                 <View style={{padding: 50}}>
-                <Button
+                <CButton
                   label="Increase highscore"
                   onPress={this.handlePress}>
-                </Button>
+                </CButton>
                 </View>
             </ImageBackground>
           

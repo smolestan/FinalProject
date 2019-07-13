@@ -1,6 +1,6 @@
 import axios from 'axios'
 import * as actionTypes from './actionTypes'
-import { saveToken, removeToken } from '../storage/settingsStorage'
+import { setStorageItem, removeStorageItem } from '../storage/Storage'
 
 export const authStart = () => {
     return {
@@ -23,7 +23,7 @@ export const authFail = error => {
 }
 
 export const logout = () => {
-    removeToken()
+    removeStorageItem('token')
     return {
         type: actionTypes.AUTH_LOGOUT
     }
@@ -32,13 +32,13 @@ export const logout = () => {
 export const authLogin = (username, password) => {
     return dispatch => {
         dispatch(authStart())
-        axios.post('http:/127.0.0.1:8000/rest-auth/login/', {
+        axios.post('https://mobasketball.herokuapp.com/rest-auth/login/', {
             username: username,
             password: password
         })
         .then(res => {
             const token = res.data.key
-            saveToken(token)
+            setStorageItem('token', token)
             dispatch(authSuccess(token))
         })
         .catch(err => {
@@ -58,7 +58,7 @@ export const authSignup = (username, email, password, password2) => {
         })
         .then(res => {
             const token = res.data.key
-            saveToken(token)
+            setStorageItem('token', token)
             dispatch(authSuccess(token))
         })
         .catch(err => {

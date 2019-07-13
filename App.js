@@ -1,7 +1,5 @@
 import React from 'react';
-import { 
-  createAppContainer,
-} from 'react-navigation'
+import { createAppContainer } from 'react-navigation'
 import AppNavigator from './src/navigation/AppNavigator';
 
 import { Provider } from 'react-redux'

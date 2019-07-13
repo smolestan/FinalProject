@@ -1,12 +1,16 @@
 import React from "react"
-import { View, StyleSheet, Text } from "react-native"
+import { View, StyleSheet, ScrollView } from "react-native"
+import SettingsList from '../components/SettingsList'
 
 export default class SettingsScreen extends React.Component {
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Settings</Text>
+        <ScrollView style={{ flex: 1, flexDirection: 'column' }}>
+          <SettingsList
+            onPressItem={(screen) => this.props.navigation.navigate(screen)}>Settings</SettingsList>
+        </ScrollView>
       </View>
     )
   }
@@ -15,7 +19,7 @@ export default class SettingsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    paddingTop: 45,
 
   },
   text: {

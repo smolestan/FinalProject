@@ -3,7 +3,7 @@ import { View, Text, Button } from 'react-native'
 import i18n from '../services/i18n'
 import { connect } from 'react-redux'
 import { updateExercises } from '../actions'
-import { checkToken } from '../storage/settingsStorage'
+import { getStorageItem } from '../storage/Storage'
 
 class SplashScreen extends React.Component {
 
@@ -15,7 +15,7 @@ class SplashScreen extends React.Component {
   }
 
   componentDidMount() {
-    checkToken()
+    getStorageItem('token')
         .then((token) => {
           if (token == false) {
             this.setState({ isCheckResultFalse: true }) 

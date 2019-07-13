@@ -4,12 +4,14 @@ import { createStackNavigator } from 'react-navigation'
 import { Ionicons } from 'react-native-vector-icons'
 import ProfileScreen from '../screens/ProfileScreen'
 import SettingsScreen from '../screens/SettingsScreen'
+import LogoutScreen from '../screens/LogoutScreen'
 import { t } from '../services/i18n'
 
 const ProfileTab = createStackNavigator(
   {
     Profile: ProfileScreen,
-    Settings: SettingsScreen
+    Settings: SettingsScreen,
+    Logout: LogoutScreen
   },
   {
     initialRouteName: "Profile"

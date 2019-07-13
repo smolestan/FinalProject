@@ -14,7 +14,7 @@ import { connect } from 'react-redux'
 import { authLogin } from '../actions'
 
 
-class LoginScreen extends React.Component {
+class SignupScreen extends React.Component {
   
   state = {
     login: "",
@@ -31,16 +31,14 @@ class LoginScreen extends React.Component {
 
   handleLoginPress = () => {
     this.props.authLogin(this.state.login, this.state.password)
-  }
-
-  componentDidUpdate() {
-    if (this.props.token) {
-      this.props.navigation.navigate('Main')
-    }
+    // this.props.navigation.navigate('Main')
+    // console.log("Login button pressed")
   }
 
   handleSignupPress = () => {
-    this.props.navigation.navigate('Signup')
+    this.props.navigation.navigate('Main')
+
+    // console.log("Signup button pressed")
   }
 
   render() {
@@ -78,9 +76,7 @@ class LoginScreen extends React.Component {
               secureTextEntry={true}
               returnKeyType="done"
             />
-            <CButton label="Log In" onPress={this.handleLoginPress} />
-            <Text style={styles.text}>or</Text>
-            <Button title="Sign Up" onPress={this.handleSignupPress} />
+            <CButton label="Sign Up" onPress={this.handleLoginPress} />
           </View>
 
         }
@@ -122,10 +118,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   loading: state.auth.loading,
-  error: state.auth.error,
-  token: state.auth.token
+  error: state.auth.error
 })
 
 const mapDispatchToProps = ({ authLogin })
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(SignupScreen)

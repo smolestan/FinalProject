@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 
-class Button extends React.Component {
+class CButton extends React.Component {
     render() {
         const { label, onPress } = this.props
         return (
@@ -33,4 +33,4 @@ class Button extends React.Component {
      }
  })
 
- export default Button
+ export default CButton
