@@ -4,12 +4,12 @@ import {
   StyleSheet, 
   View, 
   KeyboardAvoidingView,
+  TextInput,
   Text,
   Button,
   ActivityIndicator
 } from "react-native"
 import CButton from "../components/CButton"
-import FormTextInput from "../components/FormTextInput"
 import { connect } from 'react-redux'
 import { authLogin } from '../actions'
 
@@ -64,14 +64,18 @@ class LoginScreen extends React.Component {
           <ActivityIndicator style={styles.ingicator} size="large" color='dodgerblue' /> 
           :
           <View style={styles.form}>
-            <FormTextInput
+            <TextInput
+              style={styles.textInput}
+              selectionColor="dodgerblue"
               value={this.state.login}
               onChangeText={this.handleLoginChange}
               placeholder="Login"
               autoCorrect={false}
               returnKeyType='next'
             />
-            <FormTextInput
+            <TextInput
+              style={styles.textInput}
+              selectionColor="dodgerblue"
               value={this.state.password}
               onChangeText={this.handlePasswordChange}
               placeholder="Password"
@@ -106,6 +110,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     width: "80%"
+  },
+  textInput: {
+    height: 40,
+    borderColor: "silver",
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    marginBottom: 20
   },
   text: {
     textAlign: "center",

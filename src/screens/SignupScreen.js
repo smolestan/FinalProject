@@ -9,7 +9,6 @@ import {
   ActivityIndicator
 } from "react-native"
 import CButton from "../components/CButton"
-import FormTextInput from "../components/FormTextInput"
 import { connect } from 'react-redux'
 import { authLogin } from '../actions'
 
@@ -62,20 +61,6 @@ class SignupScreen extends React.Component {
           <ActivityIndicator style={styles.ingicator} size="large" color='dodgerblue' /> 
           :
           <View style={styles.form}>
-            <FormTextInput
-              value={this.state.login}
-              onChangeText={this.handleLoginChange}
-              placeholder="Login"
-              autoCorrect={false}
-              returnKeyType='next'
-            />
-            <FormTextInput
-              value={this.state.password}
-              onChangeText={this.handlePasswordChange}
-              placeholder="Password"
-              secureTextEntry={true}
-              returnKeyType="done"
-            />
             <CButton label="Sign Up" onPress={this.handleLoginPress} />
           </View>
 
