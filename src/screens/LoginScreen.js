@@ -48,7 +48,7 @@ class LoginScreen extends React.Component {
     let errorMessage = null
     if (this.props.error) {
       errorMessage = (
-        <Text style={styles.error}>{this.props.error.message}</Text>
+        <Text style={styles.error}>{this.props.error}</Text>
       )
     }
     return (
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     color: "grey"
   },
   ingicator: {
-    padding: 100
+    padding: 153
   },
   error: {
     textAlign: "center",

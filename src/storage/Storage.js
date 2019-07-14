@@ -1,5 +1,19 @@
 import { AsyncStorage } from 'react-native'
 
+export const getAllStorageEntries = async () => {
+  console.log('AsyncStorage Content: ')
+  try {
+    AsyncStorage.getAllKeys()
+      .then(keys => keys.length == 0 ? console.log('EMPTY') : AsyncStorage.multiGet(keys)
+        .then((result) => {
+          result.map(req => req.forEach((element) => {
+            console.log(element)
+          }))
+        }))
+  } catch (err) {
+    console.warn(err.message)
+  }
+}
 
 export const getStorageItem = async (key) => {
   try {

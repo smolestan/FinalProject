@@ -3,7 +3,7 @@ import { View, Text, Button } from 'react-native'
 import i18n from '../services/i18n'
 import { connect } from 'react-redux'
 import { updateExercises } from '../actions'
-import { getStorageItem } from '../storage/Storage'
+import { getStorageItem, getAllStorageEntries } from '../storage/Storage'
 
 class SplashScreen extends React.Component {
 
@@ -15,6 +15,7 @@ class SplashScreen extends React.Component {
   }
 
   componentDidMount() {
+    getAllStorageEntries()
     getStorageItem('user')
         .then((user) => {
           if (user == false) {

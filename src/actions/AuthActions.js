@@ -42,7 +42,13 @@ export const authLogin = (username, password) => {
             dispatch(authSuccess(token))
         })
         .catch(err => {
-            dispatch(authFail(err))
+            try {
+                const errData = Object.values(err.response.data)[0][0]
+                dispatch(authFail(errData))
+            }
+            catch(error) {
+                dispatch(authFail(err.message))
+            }
         })
     }
 }
