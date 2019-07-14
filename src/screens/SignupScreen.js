@@ -8,6 +8,7 @@ import {
   Button,
   ActivityIndicator
 } from "react-native"
+import { Formik } from 'formik'
 import CButton from "../components/CButton"
 import { connect } from 'react-redux'
 import { authLogin } from '../actions'

@@ -9,38 +9,45 @@ import {
   Button,
   ActivityIndicator
 } from "react-native"
+import { Formik } from 'formik'
+import * as yup from 'yup'
 import CButton from "../components/CButton"
+import FormTextInput from "../components/FormTextInput"
 import { connect } from 'react-redux'
 import { authLogin } from '../actions'
-
 
 class LoginScreen extends React.Component {
   
   state = {
-    login: "",
+    username: "",
     password: ""
   }
 
-  handleLoginChange = (login) => {
-    this.setState({ login: login })
+  validationSchema = yup.object().shape({
+    username: yup
+      .string()
+      .required()
+      .label('Username'),
+    password: yup
+      .string()
+      .label('Password')
+      .required()
+      .min(3, 'Seems a bit short...')
+  })
+  
+
+  handleLoginPress = (username, password) => {
+    this.props.authLogin(username, password)
   }
 
-  handlePasswordChange = (password) => {
-    this.setState({ password: password })
-  }
-
-  handleLoginPress = () => {
-    this.props.authLogin(this.state.login, this.state.password)
+  handleSignupPress = () => {
+    this.props.navigation.navigate('Signup')
   }
 
   componentDidUpdate() {
     if (this.props.token) {
       this.props.navigation.navigate('Main')
     }
-  }
-
-  handleSignupPress = () => {
-    this.props.navigation.navigate('Signup')
   }
 
   render() {
@@ -51,6 +58,7 @@ class LoginScreen extends React.Component {
         <Text style={styles.error}>{this.props.error}</Text>
       )
     }
+
     return (
       <KeyboardAvoidingView
         style={styles.container}
@@ -64,27 +72,33 @@ class LoginScreen extends React.Component {
           <ActivityIndicator style={styles.ingicator} size="large" color='dodgerblue' /> 
           :
           <View style={styles.form}>
-            <TextInput
-              style={styles.textInput}
-              selectionColor="dodgerblue"
-              value={this.state.login}
-              onChangeText={this.handleLoginChange}
-              placeholder="Login"
-              autoCorrect={false}
-              returnKeyType='next'
-            />
-            <TextInput
-              style={styles.textInput}
-              selectionColor="dodgerblue"
-              value={this.state.password}
-              onChangeText={this.handlePasswordChange}
-              placeholder="Password"
-              secureTextEntry={true}
-              returnKeyType="done"
-            />
-            <CButton label="Log In" onPress={this.handleLoginPress} />
-            <Text style={styles.text}>or</Text>
-            <Button title="Sign Up" onPress={this.handleSignupPress} />
+            <Formik
+              initialValues={{ username: '', password: ''}}
+              onSubmit={values => this.handleLoginPress(values.username, values.password)}
+              validationSchema={this.validationSchema}
+            >
+              {formikProps => (
+                <React.Fragment>
+                  <FormTextInput
+                    formikProps={formikProps}
+                    formikKey='username'
+                    placeholder='Username'
+                    autoCorrect={false}
+                    returnKeyType='next'
+                  />
+                  <FormTextInput 
+                    formikProps={formikProps}
+                    formikKey='password'
+                    placeholder='Password'
+                    secureTextEntry={true}
+                    returnKeyType='done'
+                  />
+                  <CButton label="Log In" onPress={formikProps.handleSubmit} />
+                  <Text style={styles.text}>or</Text>
+                  <Button title="Sign Up" onPress={this.handleSignupPress} />
+                </React.Fragment>
+              )}
+            </Formik>
           </View>
 
         }
@@ -110,12 +124,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     width: "80%"
-  },
-  textInput: {
-    height: 40,
-    borderColor: "silver",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    marginBottom: 20
   },
   text: {
     textAlign: "center",
