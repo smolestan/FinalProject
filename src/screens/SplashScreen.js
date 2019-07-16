@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, Button } from 'react-native'
+import axios from 'axios'
 import i18n from '../services/i18n'
 import { connect } from 'react-redux'
 import { updateExercises } from '../actions'
@@ -32,10 +33,9 @@ class SplashScreen extends React.Component {
         })
         .catch((error) => console.warn(error))
     
-    fetch("https://mobasketball.herokuapp.com/api/exercises/")
-        .then(response => response.json())
-        .then(data => {
-          this.props.updateExercises(data)
+    axios.get("https://mobasketball.herokuapp.com/api/exercises/")
+        .then(res => {
+          this.props.updateExercises(res.data)
           this.setState({ isExercisesLoaded: true })
         })
         .catch(err => console.warn(err))

@@ -4,7 +4,6 @@ import {
   StyleSheet, 
   View, 
   KeyboardAvoidingView,
-  TextInput,
   Text,
   Button,
   ActivityIndicator
@@ -18,11 +17,6 @@ import { authLogin } from '../actions'
 
 class LoginScreen extends React.Component {
   
-  state = {
-    username: "",
-    password: ""
-  }
-
   validationSchema = yup.object().shape({
     username: yup
       .string()
@@ -35,15 +29,6 @@ class LoginScreen extends React.Component {
       .min(3, 'Seems a bit short...')
   })
   
-
-  handleLoginPress = (username, password) => {
-    this.props.authLogin(username, password)
-  }
-
-  handleSignupPress = () => {
-    this.props.navigation.navigate('Signup')
-  }
-
   componentDidUpdate() {
     if (this.props.token) {
       this.props.navigation.navigate('Main')
@@ -64,17 +49,23 @@ class LoginScreen extends React.Component {
         style={styles.container}
         behavior="padding"
       >
-        <Image source={require('../../assets/logo.png')} style={styles.logo} />
+        <Image 
+          source={require('../../assets/logo.png')} 
+          style={styles.logo} />
         { errorMessage }
         {
           this.props.loading 
           ?
-          <ActivityIndicator style={styles.ingicator} size="large" color='dodgerblue' /> 
+          <ActivityIndicator 
+            style={styles.ingicator} 
+            size="large" 
+            color='dodgerblue' /> 
           :
           <View style={styles.form}>
             <Formik
               initialValues={{ username: '', password: ''}}
-              onSubmit={values => this.handleLoginPress(values.username, values.password)}
+              onSubmit={values => 
+                this.props.authLogin(values.username, values.password)}
               validationSchema={this.validationSchema}
             >
               {formikProps => (
@@ -93,14 +84,19 @@ class LoginScreen extends React.Component {
                     secureTextEntry={true}
                     returnKeyType='done'
                   />
-                  <CButton label="Log In" onPress={formikProps.handleSubmit} />
+                  <CButton 
+                    label="Log In" 
+                    onPress={formikProps.handleSubmit} 
+                  />
                   <Text style={styles.text}>or</Text>
-                  <Button title="Sign Up" onPress={this.handleSignupPress} />
+                  <Button 
+                    title="Sign Up" 
+                    onPress={() => this.props.navigation.navigate('Signup')} 
+                  />
                 </React.Fragment>
               )}
             </Formik>
           </View>
-
         }
       </KeyboardAvoidingView>
     )
