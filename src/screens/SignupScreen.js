@@ -43,7 +43,12 @@ class SignupScreen extends React.Component {
   
   componentDidUpdate() {
     if (this.props.token) {
-      this.props.navigation.navigate('Main')
+      axios.get("https://mobasketball.herokuapp.com/api/exercises/")
+      .then(res => {
+        setStorageItem('exercises', res.data)
+        this.props.navigation.navigate('Main')
+      })
+      .catch(err => console.warn(err))
     }
   }
 

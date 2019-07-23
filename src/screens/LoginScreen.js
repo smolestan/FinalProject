@@ -14,6 +14,8 @@ import CButton from "../components/CButton"
 import FormTextInput from "../components/FormTextInput"
 import { connect } from 'react-redux'
 import { authLogin } from '../actions'
+import axios from 'axios'
+import { setStorageItem } from '../storage/Storage'
 
 class LoginScreen extends React.Component {
   
@@ -31,7 +33,12 @@ class LoginScreen extends React.Component {
   
   componentDidUpdate() {
     if (this.props.token) {
-      this.props.navigation.navigate('Main')
+      axios.get("https://mobasketball.herokuapp.com/api/exercises/")
+      .then(res => {
+        setStorageItem('exercises', res.data)
+        this.props.navigation.navigate('Main')
+      })
+      .catch(err => console.warn(err))
     }
   }
 
@@ -137,7 +144,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   loading: state.auth.loading,
   error: state.auth.error,
-  token: state.auth.token
+  token: state.auth.token,
 })
 
 const mapDispatchToProps = ({ authLogin })

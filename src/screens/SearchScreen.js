@@ -1,10 +1,20 @@
 import React from "react"
 import { View, StyleSheet, Text, FlatList } from "react-native"
-import { connect } from 'react-redux'
+import { getStorageItem } from '../storage/Storage'
 
 import Row from '../components/Row'
 
 class SearchScreen extends React.Component {
+
+  state = {}
+
+  componentDidMount() {
+    getStorageItem('exercises')
+        .then((exercises) => {
+            this.setState({ exercises })
+        })
+        .catch(err => console.warn('Promise rejected with error: ' + err))
+  }
 
   onPress = (title, video) => {
     this.props.navigation.navigate('Exercise', { 
@@ -19,7 +29,7 @@ class SearchScreen extends React.Component {
       <View>
         <Text style={styles.text}>Exercises</Text>
         <FlatList
-          data={this.props.exercises}
+          data={this.state.exercises}
           keyExtractor={(item, index) => item.id.toString()}
           renderItem={this.renderItem}
         />
@@ -38,8 +48,4 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = ({ exercises }) => ({
-  exercises
-})
-
-export default connect(mapStateToProps, {})(SearchScreen)
+export default SearchScreen

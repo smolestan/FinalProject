@@ -24,6 +24,7 @@ export const authFail = error => {
 
 export const logout = () => {
     removeStorageItem('user')
+    removeStorageItem('exercises')
     return {
         type: actionTypes.AUTH_LOGOUT
     }
