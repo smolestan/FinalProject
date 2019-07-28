@@ -24,6 +24,7 @@ export const authFail = error => {
 
 export const logout = () => {
     removeStorageItem('user')
+    removeStorageItem('profile')
     removeStorageItem('exercises')
     return {
         type: actionTypes.AUTH_LOGOUT
@@ -39,7 +40,7 @@ export const authLogin = (username, password) => {
         })
         .then(res => {
             const token = res.data.key
-            setStorageItem('user', { username, token } )
+            setStorageItem('user', { token } )
             dispatch(authSuccess(token))
         })
         .catch(err => {
@@ -65,7 +66,7 @@ export const authSignup = (username, email, password1, password2) => {
         })
         .then(res => {
             const token = res.data.key
-            setStorageItem('user', { username, token } )
+            setStorageItem('user', { token } )
             dispatch(authSuccess(token))
         })
         .catch(err => {

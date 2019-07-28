@@ -14,6 +14,8 @@ import CButton from "../components/CButton"
 import FormTextInput from "../components/FormTextInput"
 import { connect } from 'react-redux'
 import { authSignup } from '../actions'
+import axios from 'axios'
+import { setStorageItem } from '../storage/Storage'
 
 class SignupScreen extends React.Component {
   
@@ -43,6 +45,10 @@ class SignupScreen extends React.Component {
   
   componentDidUpdate() {
     if (this.props.token) {
+      axios.defaults.headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${this.props.token}`
+      }
       axios.get("https://mobasketball.herokuapp.com/api/exercises/")
       .then(res => {
         setStorageItem('exercises', res.data)

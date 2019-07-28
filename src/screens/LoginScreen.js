@@ -33,6 +33,10 @@ class LoginScreen extends React.Component {
   
   componentDidUpdate() {
     if (this.props.token) {
+      axios.defaults.headers = {
+        "Content-Type": "application/json",
+        Authorization: `Token ${this.props.token}`
+      }
       axios.get("https://mobasketball.herokuapp.com/api/exercises/")
       .then(res => {
         setStorageItem('exercises', res.data)

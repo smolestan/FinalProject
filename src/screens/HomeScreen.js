@@ -28,10 +28,16 @@ class HomeScreen extends React.Component {
             >
                 <Text style={styles.text}>{t('main:text')}</Text>
                 <View style={{padding: 50}}>
-                <CButton
-                  label="Increase highscore"
-                  onPress={this.handlePress}>
-                </CButton>
+                  <CButton
+                    label="Let's train"
+                    onPress={() => this.props.navigation.navigate('Training')}>
+                  </CButton>
+                </View>
+                <View style={{padding: 50}}>
+                  <CButton
+                    label="Increase highscore"
+                    onPress={this.handlePress}>
+                  </CButton>
                 </View>
             </ImageBackground>
           
