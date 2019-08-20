@@ -1,5 +1,5 @@
 import React from "react"
-import { View, StyleSheet, Text, Image, Dimensions } from "react-native"
+import { View, StyleSheet, Text, Image, Dimensions, Button } from "react-native"
 import { getStorageItem, setStorageItem } from '../storage/Storage'
 import FormTextInput from "../components/FormTextInput"
 import { Formik } from 'formik'
@@ -70,14 +70,22 @@ export default class ProfileScreen extends React.Component {
 
   render() {
     const dimensions = Dimensions.get('window')
-    const imageHeight = (dimensions.width / 2)
-    const imageWidth = (dimensions.width / 2)
+    const imageHeight = (dimensions.width / 3)
+    const imageWidth = (dimensions.width / 3)
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Details</Text>
         <Text style={styles.text}>Username: { this.state.profile.username }</Text>
         <Image
             source={{ uri: this.state.profile.image, width: imageWidth, height: imageHeight }}
+        />
+        <Button
+          onPress={this._pickImage}
+          title="Pick an image from camera roll"
+        />
+        <Button
+          onPress={this._takePhoto}
+          title="Take a photo"
         />
         <View style={styles.form}>
             <Formik

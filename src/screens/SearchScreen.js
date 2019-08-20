@@ -26,7 +26,7 @@ class SearchScreen extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={styles.text}>Exercises</Text>
         <FlatList
           data={this.state.exercises}

@@ -16,9 +16,6 @@ const Details = (props) => {
   return (
     <View>
       <Text style={styles.details}>You are now on {props.currentSession}
-        {"\n"}{"\n"}The Pomodoro Technique is a time management method. 
-        {"\n"}The technique uses a timer to break down work into intervals, traditionally 25 minutes in length, separated by short breaks, usually 5 minutes in length. 
-        {"\n"}After each fourth work session, a long interval follows and after that the cycle starts again.
       </Text>
     </View>
   )
